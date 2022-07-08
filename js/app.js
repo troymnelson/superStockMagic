@@ -3,25 +3,29 @@
 /* ******************* */
 var today = moment().format('MMMM Do YYYY, hh:mm:ss a');
 console.log(today);
-var sym = 'AAPL';
-
+var userInputSym = 'AAPL';
+var $asidePEl = $('.p-aside');
+var $mainPEl =  $('.main-p')
 var newPElText = today;
 var pEl = $('#time');
-
+console.log($asidePEl.text);
 const secret = `sk_da0e19d152f54558b107737950eee80b`;
 const pub = `pk_de2544713f8442618866a25c57e5e264`;
-
+$('.p-aside').text="hello";
 $(pEl).text(today);
 
 /* grabbing the stock overview for a certain ticker */
-fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${sym}&apikey=U9H8L320ZL3GRGKS`)
+fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym}&apikey=U9H8L320ZL3GRGKS`)
   .then(function (res) {
     return res.json();
 })
   .then(function (data) {
-    let results = data;
+    // let results = data;
     // console.log(results);
-    console.log(results);
+    $('.p-aside').text = "hello";
+    console.log($asidePEl); 
+    console.log(data['52WeekHigh']);
+    
 })  
   .catch(function (err) {
     console.error(err);
@@ -44,7 +48,7 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
 
 
 /* grabbing stuff from iexcloud API */
-fetch(`https://cloud.iexapis.com/stable/stock/${sym}/quote?token=${pub}`)
+fetch(`https://cloud.iexapis.com/stable/stock/${userInputSym}/quote?token=${pub}`)
   .then(function (response) {
     let data0 = response;
     console.log(data0);
@@ -54,3 +58,7 @@ fetch(`https://cloud.iexapis.com/stable/stock/${sym}/quote?token=${pub}`)
     let results = data;
     console.log(results);
 });
+
+
+
+//modal event listener

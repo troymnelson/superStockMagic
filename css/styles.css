@@ -5,12 +5,16 @@
     width: 100%;
 }
 
-.container {
-    justify-content: space-around;
-}
 
 .center-text {
     text-align: center;
 }
 
 /* test the branch */
+
+img {
+    width: 50px;
+    height: 200px;
+    border: 1px solid black;
+    padding: 20px;
+}
