@@ -14,6 +14,12 @@ const pub = `pk_de2544713f8442618866a25c57e5e264`;
 $('.p-aside').text="hello";
 $(pEl).text(today);
 
+// this is the onclick function for the stock search button
+$(`#stockSearchButton`).click(function() {
+  console.log($(`.materialize-textarea`).val());
+});
+
+
 /* grabbing the stock overview for a certain ticker */
 fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym}&apikey=U9H8L320ZL3GRGKS`)
   .then(function (res) {
