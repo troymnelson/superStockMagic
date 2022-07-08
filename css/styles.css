@@ -1,3 +1,4 @@
+
 .btn {
     display: flex;
     justify-content: space-around;
@@ -8,3 +9,6 @@
     justify-content: space-around;
 }
 
+.center-text {
+    text-align: center;
+}
