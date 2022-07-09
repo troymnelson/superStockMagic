@@ -14,6 +14,7 @@ var $asidePEl = $('.p-aside');
 var $mainPEl =  $('.main-p');
 var $timePEl = $('.time');
 var txt = $("<p></p>").text(moment().format('MMMM Do YYYY, hh:mm:ss a'))
+var $headerEl = $('.header-el')
 
 setInterval(function () {
   $($timePEl).text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
@@ -26,7 +27,6 @@ console.log($asidePEl.text);
 
 const secret = `sk_da0e19d152f54558b107737950eee80b`;
 const pub = `pk_de2544713f8442618866a25c57e5e264`;
-
 
 
 /* this is the onclick function for the stock search button */
@@ -90,10 +90,23 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
     // console.log(results);
     const keys = Object.keys(results);
     console.log(keys.length);
-    const num = Math.floor(Math.random() * 50);
-    $asidePEl.append(results.feed[num].summary);
-    $asidePEl.append(results.feed[num].summary);
-    $asidePEl.append(results.feed[num].summary);
+    console.log(results);
+    let num = Math.floor(Math.random() * 50);
+    let num1 = Math.floor(Math.random() * 50);
+    let num2 = Math.floor(Math.random() * 50);
+
+    if (num == num1 || num == num2) {
+      num = Math.floor(Math.random() * 50)
+    } if (num1 == num2) {
+      num1 = Math.floor(Math.random() * 50)
+    }
+
+
+    $headerEl.text(results.feed[num].title);
+    $headerEl.append('<hr>');
+    $headerEl.append(results.feed[num1].title);
+    $headerEl.append('<hr>');
+    $headerEl.append(results.feed[num2].title);
 })  
   .catch(function (err) {
     console.error(err);
@@ -120,3 +133,4 @@ fetch(`https://cloud.iexapis.com/stable/stock/${userInputSym}/quote?token=${pub}
 
 
 
+ 
