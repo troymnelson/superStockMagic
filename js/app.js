@@ -29,6 +29,37 @@ const pub = `pk_de2544713f8442618866a25c57e5e264`;
 
 
 
+/* this is the onclick function for the stock search button */
+$(`#stockSearchButton`).click(stockSearch);
+
+/* this is the iexCloud api function */
+function stockSearch() {
+  let $userInput = $(`.materialize-textarea`).val();
+
+  // TODO: add validation to make sure user is entering valid ticker strings
+
+  // grabbing stuff from iexcloud API referencing user input
+  fetch(`https://cloud.iexapis.com/stable/stock/${$userInput}/quote?token=${pub}`)
+  // handshake function
+  .then(function (response) {
+    return response.json();
+  })
+  // hands shaken, data taken
+  .then(function (data) {
+    let data0 = data;
+    console.log(data0);
+  })
+  // catch bucket for errors (thanks micheal)
+  .catch(function (err) {
+    console.error(err);
+  });
+
+  let parsedData = {
+    // all my this code that I spent hours on was deleted so I'm despressed
+  }
+  // console.log(parsedData);
+}
+
 /* grabbing the stock overview for a certain ticker */
 fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym}&apikey=U9H8L320ZL3GRGKS`)
   .then(function (res) {
@@ -63,6 +94,7 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
 })  
   .catch(function (err) {
     console.error(err);
+
 });
 
 
@@ -83,3 +115,5 @@ fetch(`https://cloud.iexapis.com/stable/stock/${userInputSym}/quote?token=${pub}
 
 //modal event listener
 
+
+});
