@@ -35,7 +35,7 @@ $(`#stockSearchButton`).click(stockSearch);
 /* this is the iexCloud api function */
 function stockSearch() {
   let $userInput = $(`.materialize-textarea`).val();
-
+  console.log($userInput)
   // TODO: add validation to make sure user is entering valid ticker strings
 
   // grabbing stuff from iexcloud API referencing user input
@@ -46,12 +46,15 @@ function stockSearch() {
   })
   // hands shaken, data taken
   .then(function (data) {
-    let data0 = data;
-    console.log(data0);
+    console.log(data);
+    
   })
   // catch bucket for errors (thanks micheal)
   .catch(function (err) {
-    console.error(err);
+    $stockPH = $('#stock-placeholder');
+    if (err) {
+      $stockPH.text('Oops! Enter a symbol for a stock');
+    }
   });
 
   let parsedData = {
@@ -116,4 +119,4 @@ fetch(`https://cloud.iexapis.com/stable/stock/${userInputSym}/quote?token=${pub}
 //modal event listener
 
 
-});
+
