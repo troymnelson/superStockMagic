@@ -1,17 +1,24 @@
 /* ******************* */
 /* declaring variables */
 /* ******************* */
+
+//variables to show time
 var today = moment().format('MMMM Do YYYY, hh:mm:ss a');
 console.log(today);
+
+// holds user input for the symbol of stock to search up
 var userInputSym = 'AAPL';
 
+// jQuery grabbing elements
 var $asidePEl = $('.p-aside');
 var $mainPEl =  $('.main-p');
+var $timePEl = $('.time');
+var txt = $("<p></p>").text(moment().format('MMMM Do YYYY, hh:mm:ss a'))
 
-var pEl = $('#time');
+setInterval(function () {
+  $($timePEl).text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
+}, 1000)
 
-$('.p-aside').text("hello");
-$('#time').text(today);
 
 console.log(today);
 console.log($asidePEl.text);
@@ -47,7 +54,12 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
   .then(function (data) {
     let results = data;
     // console.log(results);
-    console.log(results);
+    const keys = Object.keys(results);
+    console.log(keys.length);
+    const num = Math.floor(Math.random() * 50);
+    $asidePEl.append(results.feed[num].summary);
+    $asidePEl.append(results.feed[num].summary);
+    $asidePEl.append(results.feed[num].summary);
 })  
   .catch(function (err) {
     console.error(err);
