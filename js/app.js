@@ -1,18 +1,33 @@
 /* ******************* */
 /* declaring variables */
 /* ******************* */
+
+//variables to show time
 var today = moment().format('MMMM Do YYYY, hh:mm:ss a');
 console.log(today);
+
+// holds user input for the symbol of stock to search up
 var userInputSym = 'AAPL';
+
+// jQuery grabbing elements
 var $asidePEl = $('.p-aside');
-var $mainPEl =  $('.main-p')
-var newPElText = today;
-var pEl = $('#time');
+var $mainPEl =  $('.main-p');
+var $timePEl = $('.time');
+var txt = $("<p></p>").text(moment().format('MMMM Do YYYY, hh:mm:ss a'))
+
+setInterval(function () {
+  $($timePEl).text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
+}, 1000)
+
+
+console.log(today);
 console.log($asidePEl.text);
+
+
 const secret = `sk_da0e19d152f54558b107737950eee80b`;
 const pub = `pk_de2544713f8442618866a25c57e5e264`;
-$('.p-aside').text="hello";
-$(pEl).text(today);
+
+
 
 /* this is the onclick function for the stock search button */
 $(`#stockSearchButton`).click(stockSearch);
@@ -70,8 +85,35 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
   .then(function (data) {
     let results = data;
     // console.log(results);
-    console.log(results);
+    const keys = Object.keys(results);
+    console.log(keys.length);
+    const num = Math.floor(Math.random() * 50);
+    $asidePEl.append(results.feed[num].summary);
+    $asidePEl.append(results.feed[num].summary);
+    $asidePEl.append(results.feed[num].summary);
 })  
   .catch(function (err) {
     console.error(err);
+
+});
+
+
+
+/* grabbing stuff from iexcloud API */
+fetch(`https://cloud.iexapis.com/stable/stock/${userInputSym}/quote?token=${pub}`)
+  .then(function (response) {
+    let data0 = response;
+    console.log(data0);
+    return data0.json();
+})
+  .then(function (data) {
+    let results = data;
+    console.log(results);
+});
+
+
+
+//modal event listener
+
+
 });
