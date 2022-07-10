@@ -1,31 +1,46 @@
 /* ******************* */
 /* declaring variables */
 /* ******************* */
+
+//variables to show time
 var today = moment().format('MMMM Do YYYY, hh:mm:ss a');
 console.log(today);
+
+// holds user input for the symbol of stock to search up
 var userInputSym = 'AAPL';
+
+// jQuery grabbing elements
 var $asidePEl = $('.p-aside');
-var $mainPEl =  $('.main-p')
-var newPElText = today;
-var pEl = $('#time');
+var $mainPEl =  $('.main-p');
+var $timePEl = $('.time');
+var txt = $("<p></p>").text(moment().format('MMMM Do YYYY, hh:mm:ss a'))
+var $headerEl = $('.header-el')
+
+setInterval(function () {
+  $($timePEl).text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
+}, 1000)
+
+
+console.log(today);
 console.log($asidePEl.text);
+
+
 const secret = `sk_da0e19d152f54558b107737950eee80b`;
 const pub = `pk_de2544713f8442618866a25c57e5e264`;
-$('.p-aside').text="hello";
-$(pEl).text(today);
 
-// this is the onclick function for the stock search button
+
+/* this is the onclick function for the stock search button */
 $(`#stockSearchButton`).click(stockSearch);
 
+/* this is the iexCloud api function */
 function stockSearch() {
   let $userInput = $(`.materialize-textarea`).val();
+  console.log($userInput)
+  // TODO: add validation to make sure user is entering valid ticker strings
 
-  // TODO add a validation to make sure the user is only typing in the ticker
-
-  /* grabbing stuff from iexcloud API */
-  // first requesting the data referencing the user input and our api token
+  // grabbing stuff from iexcloud API referencing user input
   fetch(`https://cloud.iexapis.com/stable/stock/${$userInput}/quote?token=${pub}`)
-  // processing the handshake 
+  // handshake function
   .then(function (response) {
     return response.json();
   })
@@ -34,9 +49,12 @@ function stockSearch() {
     let data0 = data;
     console.log(data0);
   })
-  // catchall error bucket (thanks micheal!)
-  .catch(function(err) {
-    console.error(err);
+  // catch bucket for errors (thanks micheal)
+  .catch(function (err) {
+    $stockPH = $('#stock-placeholder');
+    if (err) {
+      $stockPH.text('Oops! Enter a symbol for a stock');
+    }
   });
 
   let parsedData = {
@@ -55,6 +73,7 @@ function stockSearch() {
     lastUpdated: data0.iexLastUpdated,
 
   }
+  // console.log(parsedData);
 }
 
 /* grabbing the stock overview for a certain ticker */
@@ -82,10 +101,29 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
   .then(function (data) {
     let results = data;
     // console.log(results);
+    const keys = Object.keys(results);
+    console.log(keys.length);
     console.log(results);
+    let num = Math.floor(Math.random() * 50);
+    let num1 = Math.floor(Math.random() * 50);
+    let num2 = Math.floor(Math.random() * 50);
+
+    if (num == num1 || num == num2) {
+      num = Math.floor(Math.random() * 50)
+    } if (num1 == num2) {
+      num1 = Math.floor(Math.random() * 50)
+    }
+
+
+    $headerEl.text(results.feed[num].title);
+    $headerEl.append('<hr>');
+    $headerEl.append(results.feed[num1].title);
+    $headerEl.append('<hr>');
+    $headerEl.append(results.feed[num2].title);
 })  
   .catch(function (err) {
     console.error(err);
+
 });
 
 
@@ -94,3 +132,7 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
 
 
 //modal event listener
+
+
+
+ 
