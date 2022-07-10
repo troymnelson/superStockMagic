@@ -1,24 +1,29 @@
-
+/* 
 body {
-    height: 3000px;
-}
+    height: 100%;
+} */
 
-.btn {
+/* .btn {
     display: flex;
     justify-content: space-around;
     width: 100%;
-}
+} */
 
 
-.center-text {
+/* .center-text {
     text-align: center;
-}
+} */
 
 /* test the branch */
 
 img {
-    width: 50px;
     height: 200px;
     border: 1px solid black;
     padding: 20px;
+}
+
+#chart{
+    display: flex;
+    justify-content: center;
+    height: 200px;
 }
