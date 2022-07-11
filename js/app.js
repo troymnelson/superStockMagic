@@ -14,7 +14,19 @@ var $asidePEl = $('.p-aside');
 var $mainPEl =  $('.main-p');
 var $timePEl = $('.time');
 var txt = $("<p></p>").text(moment().format('MMMM Do YYYY, hh:mm:ss a'))
-var $headerEl = $('.header-el')
+var $headerEl1 = $('.header-el1')
+var $headerEl2 = $('.header-el2')
+var $headerEl3 = $('.header-el3')
+
+var $techBtn = $('.tech');
+var $financeBtn = $('.sci');
+
+var $img1 = $('#img1');
+var $img2 = $('#img2');
+var $img3 = $('#img3');
+var $a1 = $('#a1');
+var $a2 = $('#a2');
+var $a3 = $('#a3');
 
 setInterval(function () {
   $($timePEl).text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
@@ -93,16 +105,14 @@ fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym
     console.error(err);
 });
 
-/* grabbing news data from the alpha vantage api */
-fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&topics=technology&apikey=U9H8L320ZL3GRGKS`)
+
+// On button click technology fetch and display tech news
+  fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&topics=technology&apikey=U9H8L320ZL3GRGKS`)
   .then(function (res) {
     return res.json();
 })
   .then(function (data) {
     let results = data;
-    // console.log(results);
-    const keys = Object.keys(results);
-    console.log(keys.length);
     console.log(results);
     let num = Math.floor(Math.random() * 50);
     let num1 = Math.floor(Math.random() * 50);
@@ -115,11 +125,22 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
     }
 
 
-    $headerEl.text(results.feed[num].title);
-    $headerEl.append('<hr>');
-    $headerEl.append(results.feed[num1].title);
-    $headerEl.append('<hr>');
-    $headerEl.append(results.feed[num2].title);
+    $headerEl1.text(results.feed[num].title);
+    $headerEl1.append('<hr>');
+    $headerEl2.text(results.feed[num1].title);
+    $headerEl2.append('<hr>');
+    $headerEl3.text(results.feed[num2].title);
+
+    $a1.attr('href', results.feed[num].url)
+    $a2.attr('href', results.feed[num1].url)
+    $a3.attr('href', results.feed[num2].url)
+    $a1.attr('target', "_blank");
+    $a2.attr('target', "_blank");
+    $a3.attr('target', "_blank");
+    $img1.attr('src', results.feed[num].banner_image)
+    $img2.attr('src', results.feed[num1].banner_image)
+    $img3.attr('src', results.feed[num2].banner_image)
+    
 })  
   .catch(function (err) {
     console.error(err);
@@ -127,12 +148,7 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
 });
 
 
-
-
-
-
-//modal event listener
-
+// On finance button click fetch and display science news
 
 
  
