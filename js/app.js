@@ -46,8 +46,8 @@ function stockSearch() {
   })
   // hands shaken, data taken
   .then(function (data) {
-    console.log(data);
-    
+    let data0 = data;
+    console.log(data0);
   })
   // catch bucket for errors (thanks micheal)
   .catch(function (err) {
@@ -58,7 +58,20 @@ function stockSearch() {
   });
 
   let parsedData = {
-    // all my this code that I spent hours on was deleted so I'm despressed
+    companyName: data0.companyName,
+    pointChange: data0.change,
+    percentChange: data0.changePercent,
+    closePrice: data0.close,
+    closeTime: moment.unix(date0.closeTime).format("dddd, Do MMM YYYY, h:mm:ss A"),
+    afterHoursPointChange: data0.extendedChange,
+    afterHoursPercentChange: data0.extendedChangePercent,
+    afterHoursPrice: data0.extendedPrice,
+    afterHoursTime: moment.unix(date0.extendedPriceTime).format("dddd, Do MMM YYYY, h:mm:ss A"),
+    dayHigh: data0.high,
+    dayLow: data0.low,
+    isMarketOpen: data0.isUSMarketOpen,
+    lastUpdated: data0.iexLastUpdated,
+
   }
   // console.log(parsedData);
 }
@@ -115,17 +128,6 @@ fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&to
 
 
 
-/* grabbing stuff from iexcloud API */
-fetch(`https://cloud.iexapis.com/stable/stock/${userInputSym}/quote?token=${pub}`)
-  .then(function (response) {
-    let data0 = response;
-    console.log(data0);
-    return data0.json();
-})
-  .then(function (data) {
-    let results = data;
-    console.log(results);
-});
 
 
 
