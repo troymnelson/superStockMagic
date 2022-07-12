@@ -50,14 +50,15 @@
 
             <div class="col s8">
                 <h1>Stock Marcket Search</h1>
-                <div class="input-field">
-                    <i id="stockSearchButton" class="material-icons prefix">timeline</i>
-                    <label id="stock-placeholder" for="icon_prefix2">Search stock</label>
-                    <input id="icon_prefix2" type="text" class="validate">
-                    <div class="container">
-                        <button id="stockSearchButton" class="waves-effect indigo accent-4 btn">search</button>
+                <div class="row">
+                    <div class="input-field col s6">
+                      <i id="stockSearchButton" class="material-icons prefix">timeline</i>
+                      <label id="stock-placeholder" for="icon_prefix2">Search stock</label>
+                      <input id="icon_prefix2" class="materialize-textarea"></input>
+                      <button id="stockSearchButton" class="waves-effect indigo accent-4 btn">search</button>
                     </div>
                 </div>
+
                 <div class="stockNameHolder">
                   <h2 id="stockName"></h2>
                   <h3 id="stockPrice"></h3>
