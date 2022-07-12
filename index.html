@@ -35,12 +35,13 @@
                     </blockquote>
                 
                     <a id = "a2" href="#"><img class="responsive-img" id="img2" src="#" alt="holder image (random movie poster)"></a>
+                    
                     <blockquote>
                         <p class="p-aside left-align header-el2"></p>
                     </blockquote>
-                    
 
                     <a id = "a3" href="#"><img class="responsive-img" id="img3" src="#" alt="holder image (random movie poster)"></a>
+                    
                     <blockquote>
                         <p class="p-aside left-align header-el3"></p>
                     </blockquote>
@@ -49,13 +50,25 @@
 
             <div class="col s8">
                 <h1>Stock Marcket Search</h1>
+                <div class="row">
+                    <div class="input-field col s6">
+                      <i id="stockSearchButton" class="material-icons prefix">timeline</i>
+                      <label id="stock-placeholder" for="icon_prefix2">Search stock</label>
+                      <input id="icon_prefix2" class="materialize-textarea"></input>
+                      <button id="stockSearchButton" class="waves-effect indigo accent-4 btn">search</button>
+                    </div>
+                </div>
+
+                <div class="stockNameHolder">
+                  <h2 id="stockName"></h2>
+                  <p id="stockDesc"></p>
+                  <h3 id="stockPrice"></h3>
+                  <h4 id="stockChange"></h4>
+                </div>
                 <hr>
-                  <form class="col s12">
-                        <i id="stockSearchButton" class="material-icons prefix">search</i>
-                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                        <label id="stock-placeholder" for="icon_prefix2">Search stock</label>
-                  </form>
-                <p class="main-p left-align">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat veritatis libero dolor explicabo nam adipisci magni ex laudantium laborum atque soluta, sequi labore amet aspernatur eaque eius ut consectetur. Eaque!</p>
+                <div id="stockData">
+                </div>
+                
                 <img src="./Img/stock-chart.webp">
             </div>
             <footer class="page-footer col s12 indigo accent-4">
@@ -86,9 +99,9 @@
             </footer>
         </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://releases.jquery.com/git/ui/jquery-ui-git.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="js/app.js"></script>
 </body>

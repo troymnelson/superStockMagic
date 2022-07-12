@@ -9,6 +9,9 @@ console.log(today);
 // holds user input for the symbol of stock to search up
 var userInputSym = 'AAPL';
 
+// very cool stock thangs
+let alphaVantageData = '';
+
 // jQuery grabbing elements
 var $asidePEl = $('.p-aside');
 var $mainPEl =  $('.main-p');
@@ -34,7 +37,7 @@ setInterval(function () {
 
 
 console.log(today);
-console.log($asidePEl.text);
+// console.log($asidePEl.text);
 
 
 const secret = `sk_da0e19d152f54558b107737950eee80b`;
@@ -44,48 +47,94 @@ const pub = `pk_de2544713f8442618866a25c57e5e264`;
 /* this is the onclick function for the stock search button */
 $(`#stockSearchButton`).click(stockSearch);
 
+function displayStockData(data, alpha) {
+  console.log(data);
+  console.log(alpha);
+
+  $(`#stockName`).text(data.companyName);
+  $(`#stockDesc`).text(alpha.Description);
+  $(`#stockPrice`).text(data.latestPrice);
+  let priceColor = `#000`;
+
+  if (data.change > 0) {
+    priceColor = `#00b300`;
+  } else if (data.change < 0) {
+    priceColor = `#b30000`;
+  } else {
+    priceColor = `#000`;
+  }
+
+  $(`#stockChange`).text(`${data.change} ${data.changePercent}`);
+  $(`#stockChange`).css('color', priceColor);
+  // lol jquery is too baby to do this
+  let stockDataEl = document.getElementById('stockData');
+
+  stockDataEl.innerHTML = '';
+
+
+  stockDataEl.insertAdjacentHTML('beforeend', `
+  <table>
+    <tbody>
+      <tr>
+        <td>Previous Close</td>
+        <td>${data.previousClose}</td>
+      </tr>
+      <tr>
+        <td>Open</td>
+        <td>${data.iexOpen}</td>
+      </tr>
+      <tr>
+        <td>52 Week Range</td>
+        <td>${data.week52High} - ${data.week52Low}</td>
+      </tr>
+      <tr>
+        <td>Market Cap</td>
+        <td>${bigNumberRounder(data.marketCap)}</td>
+      </tr>
+    </tbody>
+  </table>
+  `);
+}
+
+/* this rounds big numbers to a decimal with their symbol on the end */
+function bigNumberRounder(marketCap) {
+  let numLength = marketCap.toString().length;
+  // console.log(`bigNum called and marketCap length is:${marketCap.toString().length}`);
+
+  if (numLength > 12) {
+    return `${(marketCap / 1000000000000).toFixed(2)}T`;
+  } else if (numLength > 9) {
+    return `${(marketCap / 1000000000).toFixed(2)}B`;
+  } else if (numLength > 6) {
+    return `${(marketCap / 1000000).toFixed(2)}M`;
+  } else {
+    return `${(marketCap / 1000).toFixed(2)}K`;
+  }
+
+}
+
 /* this is the iexCloud api function */
 function stockSearch() {
   let $userInput = $(`.materialize-textarea`).val();
-  console.log($userInput)
-  // TODO: add validation to make sure user is entering valid ticker strings
+  // console.log($userInput)
+  // TODO: add validation to make sure user is entering valid ticker strings?
+
+  // grabbing data from the alphavantage api
+  $.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${$userInput}&apikey=U9H8L320ZL3GRGKS`)
+  // hands shaken, data taken
+  .then(function (data0) {
+    console.log(`alphaVantage was called`);
+    alphaVantageData = data0;
+  })
 
   // grabbing stuff from iexcloud API referencing user input
-  fetch(`https://cloud.iexapis.com/stable/stock/${$userInput}/quote?token=${pub}`)
-  // handshake function
-  .then(function (response) {
-    return response.json();
-  })
+  $.get(`https://cloud.iexapis.com/stable/stock/${$userInput}/quote?token=${pub}`)
   // hands shaken, data taken
   .then(function (data) {
-    let data0 = data;
-    console.log(data0);
+    console.log(`iex called`);
+
+    displayStockData(data, alphaVantageData);
   })
-  // catch bucket for errors (thanks micheal)
-  .catch(function (err) {
-    $stockPH = $('#stock-placeholder');
-    if (err) {
-      $stockPH.text('Oops! Enter a symbol for a stock');
-    }
-  });
-
-  let parsedData = {
-    companyName: data0.companyName,
-    pointChange: data0.change,
-    percentChange: data0.changePercent,
-    closePrice: data0.close,
-    closeTime: moment.unix(date0.closeTime).format("dddd, Do MMM YYYY, h:mm:ss A"),
-    afterHoursPointChange: data0.extendedChange,
-    afterHoursPercentChange: data0.extendedChangePercent,
-    afterHoursPrice: data0.extendedPrice,
-    afterHoursTime: moment.unix(date0.extendedPriceTime).format("dddd, Do MMM YYYY, h:mm:ss A"),
-    dayHigh: data0.high,
-    dayLow: data0.low,
-    isMarketOpen: data0.isUSMarketOpen,
-    lastUpdated: data0.iexLastUpdated,
-
-  }
-  // console.log(parsedData);
 }
 
 /* grabbing the stock overview for a certain ticker */
@@ -97,8 +146,8 @@ fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym
     // let results = data;
     // console.log(results);
     $('.p-aside').text = "hello";
-    console.log($asidePEl); 
-    console.log(data['52WeekHigh']);
+    // console.log($asidePEl); 
+    // console.log(data['52WeekHigh']);
     
 })  
   .catch(function (err) {
@@ -113,7 +162,7 @@ fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym
 })
   .then(function (data) {
     let results = data;
-    console.log(results);
+    // console.log(results);
     let num = Math.floor(Math.random() * 50);
     let num1 = Math.floor(Math.random() * 50);
     let num2 = Math.floor(Math.random() * 50);
