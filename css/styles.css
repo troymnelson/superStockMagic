@@ -17,9 +17,9 @@ body {
 /* test the branch */
 
 img {
-    height: 200px;
+    height: 100px;
     border: 1px solid black;
-    padding: 20px;
+    padding: 10px;
 }
 
 #chart{
