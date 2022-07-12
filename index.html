@@ -25,34 +25,38 @@
       </nav>
 
         <div class="row">
-            <div class="col s3">
+            <div class="col s4">
                 <div class="container">
                     <h2>Daily News</h2>
                     <hr>
-                    <a id = "a1" href="#"><img id="img1" src="#" alt="holder image (random movie poster)"></a>
-                    <p class="p-aside left-align header-el1"></p>
+                    <a id = "a1" href="#"><img class="responsive-img" id="img1" src="#" alt="holder image (random movie poster)"></a>
+                    <blockquote>
+                        <p class="p-aside left-align header-el1"></p>
+                    </blockquote>
                 
-                    <a id = "a2" href="#"><img id="img2" src="#" alt="holder image (random movie poster)"></a>
-                    <p class="p-aside left-align header-el2"></p>
+                    <a id = "a2" href="#"><img class="responsive-img" id="img2" src="#" alt="holder image (random movie poster)"></a>
+                    
+                    <blockquote>
+                        <p class="p-aside left-align header-el2"></p>
+                    </blockquote>
 
-                    <a id = "a3" href="#"><img id="img3" src="#" alt="holder image (random movie poster)"></a>
-                    <p class="p-aside left-align header-el3"></p>
+                    <a id = "a3" href="#"><img class="responsive-img" id="img3" src="#" alt="holder image (random movie poster)"></a>
+                    
+                    <blockquote>
+                        <p class="p-aside left-align header-el3"></p>
+                    </blockquote>
                 </div>
             </div>
 
-            <div class="col s9">
+            <div class="col s8">
                 <h1>Stock Marcket Search</h1>
-                <hr>
-                <div class="row">
-                  <form class="col s12">
-                    <div class="row">
-                      <div class="input-field col s6">
-                        <i id="stockSearchButton" class="material-icons prefix">search</i>
-                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                        <label id="stock-placeholder" for="icon_prefix2">Search stock</label>
-                      </div>
+                <div class="input-field">
+                    <i id="stockSearchButton" class="material-icons prefix">timeline</i>
+                    <label id="stock-placeholder" for="icon_prefix2">Search stock</label>
+                    <input id="icon_prefix2" type="text" class="validate">
+                    <div class="container">
+                        <button id="stockSearchButton" class="waves-effect indigo accent-4 btn">search</button>
                     </div>
-                  </form>
                 </div>
                 <div class="stockNameHolder">
                   <h2 id="stockName"></h2>
@@ -63,7 +67,6 @@
                 <div id="stockData">
                 </div>
                 <p class="main-p left-align">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat veritatis libero dolor explicabo nam adipisci magni ex laudantium laborum atque soluta, sequi labore amet aspernatur eaque eius ut consectetur. Eaque!</p>
-                
                 
                 <img src="./Img/stock-chart.webp">
             </div>
