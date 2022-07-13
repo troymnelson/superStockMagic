@@ -18,13 +18,11 @@
       <nav>
         <div class="nav-wrapper indigo accent-4">
             <a href="#!" class="brand-logo"><i class="material-icons">child_care</i>Super Stock Magic</a>
-            <p class="time">Loading time...</p>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="#page-footer">About</a></li>
                 <li><a href="#page-footer">Contact</a></li>
             </ul>
         </div>
-        
       </nav>
 
       <div class="parallax-container">
@@ -33,32 +31,37 @@
         </div>
       </div>
 
-      <div class="container">
         <div class="row">
-            <div class="col s12">
-                <div class="container">
-                    <h2>Daily News</h2>
-                    <a id = "a1" href="#"><img class="section responsive-img" id="img1" src="#" alt="holder image (random movie poster)"></a>
-                    <blockquote>
-                        <p class="p-aside left-align header-el1"></p>
-                    </blockquote>
-                
-                    <a id = "a2" href="#"><img class="responsive-img" id="img2" src="#" alt="holder image (random movie poster)"></a>
-                    
-                    <blockquote>
-                        <p class="p-aside left-align header-el2"></p>
-                    </blockquote>
-
-                    <a id = "a3" href="#"><img class="responsive-img" id="img3" src="#" alt="holder image (random movie poster)"></a>
-                    
-                    <blockquote>
-                        <p class="p-aside left-align header-el3"></p>
-                    </blockquote>
+                <!-- Modal Trigger -->
+                <div class="container right-align">
+                    <a class="waves-effect waves-light btn modal-trigger indigo accent-4" href="#modal1">Search your Stock</a>
                 </div>
+            <div class="col s12">
+                    <h2>Daily News</h2>
+                    <div class="row">
+                        <div class="container col s4">
+                            <a id = "a1" href="#"><img class="frame section responsive-img" id="img1" src="#" alt="holder image (random movie poster)"></a>
+                            <blockquote>
+                                <p class="p-aside left-align header-el1"></p>
+                            </blockquote>
+                        </div>
+                    
+                        <div class="container col s4">
+                            <a id = "a2" href="#"><img class="frame responsive-img" id="img2" src="#" alt="holder image (random movie poster)"></a>
+                            <blockquote>
+                                <p class="p-aside left-align header-el2"></p>
+                            </blockquote>
+                        </div>
+    
+                        <div class="container col s4 ">
+                            <a id = "a3" href="#"><img class="frame responsive-img" id="img3" src="#" alt="holder image (random movie poster)"></a>
+                            <blockquote>
+                                <p class="p-aside left-align header-el3"></p>
+                            </blockquote>
+                        </div>
+                    </div>
             </div>
 
-
-      </div>
       </div>
 
             
@@ -67,9 +70,6 @@
                 <img src="./Img/stock-chart.webp" alt="" class="responsive-img">
             </div>
       </div>
-
-        <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
 
   <!-- Modal Structure -->
   <div class="container">
@@ -81,7 +81,9 @@
                 <div class="input-field col s6">
                   <i id="stockSearchButton" class="material-icons prefix">timeline</i>
                   <input id="icon_prefix2" class="materialize-textarea" placeholder="Search stock"></input>
-                  <button  id="stockSearchButton" class="waves-effect waves-light indigo accent-4 btn"><i class="material-icons left">done</i>search</button>
+                  <div class="container">
+                    <button  id="stockSearchButton" class="waves-effect waves-light indigo accent-4 btn"><i class="material-icons left">done</i>search</button>
+                  </div>
                 </div>
             </div>
 
