@@ -2,14 +2,14 @@
 /* declaring variables */
 /* ******************* */
 
-//variables to show time
+// variables to show time
 var today = moment().format('MMMM Do YYYY, hh:mm:ss a');
 console.log(today);
 
 // holds user input for the symbol of stock to search up
 var userInputSym = 'AAPL';
 
-// very cool stock thangs
+// declaring alphaVantageData vantage api variable globally so it can be accessed in any function
 let alphaVantageData = '';
 
 // jQuery grabbing elements
@@ -33,7 +33,7 @@ var $a3 = $('#a3');
 
 setInterval(function () {
   $($timePEl).text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
-}, 1000)
+}, 1000);
 
 
 console.log(today);
@@ -43,53 +43,70 @@ console.log(today);
 const secret = `sk_da0e19d152f54558b107737950eee80b`;
 const pub = `pk_de2544713f8442618866a25c57e5e264`;
 
-
+/* ******************************************************** */
 /* this is the onclick function for the stock search button */
+/* ******************************************************** */
 $(`#stockSearchButton`).click(stockSearch);
 
-function displayStockData(data, alpha) {
-  console.log(data);
-  console.log(alpha);
+function displayStockData(iexData, alphaVantageData) {
+  console.log(iexData);
+  console.log(alphaVantageData);
 
-  $(`#stockName`).text(data.companyName);
-  $(`#stockDesc`).text(alpha.Description);
-  $(`#stockPrice`).text(data.latestPrice);
+  /* ********************************************* */
+  /* setting the element value from the api object */
+  /* ********************************************* */
+
+  // checks for the value in iexCloud
+  if (iexData.companyName) {
+    $(`#stockName`).text(iexData.companyName);
+  // checks for the value in alphaVantage
+  } else if (alphaVantageData.Name) {
+    $(`#stockName`).text(alphaVantageData.companyName);
+  }
+  
+  // these rely on one api so I can't do any checking
+  $(`#stockPrice`).text(iexData.latestPrice);
+  $(`#stockDesc`).text(alphaVantageData.Description);
+  
+  // price color logic 
   let priceColor = `#000`;
-
-  if (data.change > 0) {
+  if (iexData.change > 0) {
     priceColor = `#00b300`;
-  } else if (data.change < 0) {
+  } else if (iexData.change < 0) {
     priceColor = `#b30000`;
   } else {
     priceColor = `#000`;
   }
 
-  $(`#stockChange`).text(`${data.change} ${data.changePercent}`);
+  // inserting the price text and styling
+  $(`#stockChange`).text(`${iexData.change} ${iexData.changePercent}`);
   $(`#stockChange`).css('color', priceColor);
-  // lol jquery is too baby to do this
+
+  // had to do with ES6 because of some jquery probs [Thanks Eric! :)]
   let stockDataEl = document.getElementById('stockData');
 
+  // first clearing the html in the stockData element
   stockDataEl.innerHTML = '';
 
-
+  // adding all the table info for the stock
   stockDataEl.insertAdjacentHTML('beforeend', `
   <table>
     <tbody>
       <tr>
         <td>Previous Close</td>
-        <td>${data.previousClose}</td>
+        <td>${iexData.previousClose}</td>
       </tr>
       <tr>
         <td>Open</td>
-        <td>${data.iexOpen}</td>
+        <td>${iexData.iexOpen}</td>
       </tr>
       <tr>
         <td>52 Week Range</td>
-        <td>${data.week52High} - ${data.week52Low}</td>
+        <td>${iexData.week52High} - ${iexData.week52Low}</td>
       </tr>
       <tr>
         <td>Market Cap</td>
-        <td>${bigNumberRounder(data.marketCap)}</td>
+        <td>${bigNumberRounder(iexData.marketCap)}</td>
       </tr>
     </tbody>
   </table>
@@ -97,27 +114,50 @@ function displayStockData(data, alpha) {
 }
 
 /* this rounds big numbers to a decimal with their symbol on the end */
-function bigNumberRounder(marketCap) {
-  let numLength = marketCap.toString().length;
-  // console.log(`bigNum called and marketCap length is:${marketCap.toString().length}`);
-
-  if (numLength > 12) {
-    return `${(marketCap / 1000000000000).toFixed(2)}T`;
-  } else if (numLength > 9) {
-    return `${(marketCap / 1000000000).toFixed(2)}B`;
-  } else if (numLength > 6) {
-    return `${(marketCap / 1000000).toFixed(2)}M`;
-  } else {
-    return `${(marketCap / 1000).toFixed(2)}K`;
+function bigNumberRounder(IEXCloudMarketCap) {
+  // defines local to this function
+  let alphaMarketCap = alphaVantageData.MarketCapitalization;
+  // tests for marketCap truthy value
+  if (IEXCloudMarketCap) {
+    let marketCap = IEXCloudMarketCap;
+    return marketCapIfElse(marketCap);
+  } else if (alphaVantageData.MarketCapitalization) {
+    let marketCap = alphaMarketCap;
+    return marketCapIfElse(marketCap);
   }
+  // console.log(`bigNum called and marketCap length is:${marketCap.toString().length}`);
+  
+  function marketCapIfElse(marketCap) {
+    // this grabs the length of the marketcap
+    let numLength = marketCap.toString().length;
 
+    // marketCap conversion if/else; the logic is pretty straighforward
+    if (numLength > 12) {
+      return `${(marketCap / 1000000000000).toFixed(2)}T`;
+    } else if (numLength > 9) {
+      return `${(marketCap / 1000000000).toFixed(2)}B`;
+    } else if (numLength > 6) {
+      return `${(marketCap / 1000000).toFixed(2)}M`;
+    } else {
+      return `${(marketCap / 1000).toFixed(2)}K`;
+    }
+  }
 }
 
 /* this is the iexCloud api function */
 function stockSearch() {
   let $userInput = $(`.materialize-textarea`).val();
   // console.log($userInput)
-  // TODO: add validation to make sure user is entering valid ticker strings?
+  // validation to make sure user is entering valid ticker strings?
+  $userInput = $userInput.toUpperCase();
+  $userInput = $userInput.replace(/[^a-z,A-Z ]/g, '');
+  if ($userInput) {
+    console.log(`grabbed good input: ${$userInput}`);
+
+  } else {
+    M.toast({html: `Error: please enter a valid ticker!`})
+  }
+
 
   // grabbing data from the alphavantage api
   $.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${$userInput}&apikey=U9H8L320ZL3GRGKS`)
@@ -195,6 +235,16 @@ fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym
     console.error(err);
 
 });
+
+// Parallax  and Grafic part
+$(document).ready(function(){
+  $('.parallax').parallax();
+});
+
+$(document).ready(function(){
+  $('.modal').modal();
+});
+        
 
 
 // On finance button click fetch and display science news
