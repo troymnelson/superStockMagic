@@ -236,6 +236,16 @@ fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym
 
 });
 
+// Parallax  and Grafic part
+$(document).ready(function(){
+  $('.parallax').parallax();
+});
+
+$(document).ready(function(){
+  $('.modal').modal();
+});
+        
+
 
 // On finance button click fetch and display science news
 
