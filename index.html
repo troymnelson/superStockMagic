@@ -12,24 +12,31 @@
     <link rel="icon" href="./Img/icon-stock.png">
 </head>
 
+
 <body>
+
       <nav>
         <div class="nav-wrapper indigo accent-4">
-            <a href="#" class="brand-logo ">Super Stock Magic</a>
+            <a href="#!" class="brand-logo"><i class="material-icons">child_care</i>Super Stock Magic</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li>
+                <li><a href="#page-footer">About</a></li>
+                <li><a href="#page-footer">Contact</a></li>
             </ul>
         </div>
       </nav>
 
-        <div class="row">
+      <div class="prallax-container">
+        <div class="parallax">
+            <img src="./Img/stock-chart.webp" alt="" class="responsive-img">
+        </div>
+      </div>
+
+      <div class="container">
+                <div class="row">
             <div class="col s4">
                 <div class="container">
                     <h2>Daily News</h2>
-                    <hr>
-                    <a id = "a1" href="#"><img class="responsive-img" id="img1" src="#" alt="holder image (random movie poster)"></a>
+                    <a id = "a1" href="#"><img class="section responsive-img" id="img1" src="#" alt="holder image (random movie poster)"></a>
                     <blockquote>
                         <p class="p-aside left-align header-el1"></p>
                     </blockquote>
@@ -53,9 +60,8 @@
                 <div class="row">
                     <div class="input-field col s6">
                       <i id="stockSearchButton" class="material-icons prefix">timeline</i>
-                      <label id="stock-placeholder" for="icon_prefix2">Search stock</label>
-                      <input id="icon_prefix2" class="materialize-textarea"></input>
-                      <button id="stockSearchButton" class="waves-effect indigo accent-4 btn">search</button>
+                      <input id="icon_prefix2" class="materialize-textarea" placeholder="Search stock"></input>
+                      <button  id="stockSearchButton" class="waves-effect waves-light indigo accent-4 btn"><i class="material-icons left">done</i>search</button>
                     </div>
                 </div>
 
@@ -69,35 +75,48 @@
                 <div id="stockData">
                 </div>
                 
-                <img src="./Img/stock-chart.webp">
+
             </div>
-            <footer class="page-footer col s12 indigo accent-4">
-                <div class="container">
-                    <div class="row">
-                        <div class="col l6 s12">
-                            <h5 class="white-text">About us</h5>
-                            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                                content.</p>
-                        </div>
-                        <div class="col l4 offset-l2 s12">
-                            <h5 class="white-text">Contact us</h5>
-                            <ul>
-                                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-copyright">
-                    <div class="container">
-                        © 2014 Copyright Text
-                        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-                    </div>
-                </div>
-            </footer>
+
         </div>
+
+
+        <div class="parallax-container">
+            <div class="parallax">
+                <img src="./Img/stock-chart.webp" alt="" class="responsive-img">
+            </div>
+        </div>
+
+        <footer id="page-footer" class="page-footer col s12 indigo accent-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">About us</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
+                            content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Contact us</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">GitHub</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Email</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">link</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link2</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2014 Copyright Text
+                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+            </div>
+        </footer>
+
+
+        
+        
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://releases.jquery.com/git/ui/jquery-ui-git.js"></script>
