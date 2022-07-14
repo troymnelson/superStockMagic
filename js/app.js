@@ -14,7 +14,7 @@ let alphaVantageData = '';
 
 // jQuery grabbing elements
 var $asidePEl = $('.p-aside');
-var $mainPEl =  $('.main-p');
+var $mainPEl = $('.main-p');
 var $timePEl = $('.time');
 var txt = $("<p></p>").text(moment().format('MMMM Do YYYY, hh:mm:ss a'))
 var $headerEl1 = $('.header-el1')
@@ -30,6 +30,7 @@ var $img3 = $('#img3');
 var $a1 = $('#a1');
 var $a2 = $('#a2');
 var $a3 = $('#a3');
+
 
 setInterval(function () {
   $($timePEl).text(moment().format('MMMM Do YYYY, hh:mm:ss a'));
@@ -59,15 +60,15 @@ function displayStockData(iexData, alphaVantageData) {
   // checks for the value in iexCloud
   if (iexData.companyName) {
     $(`#stockName`).text(iexData.companyName);
-  // checks for the value in alphaVantage
+    // checks for the value in alphaVantage
   } else if (alphaVantageData.Name) {
     $(`#stockName`).text(alphaVantageData.companyName);
   }
-  
+
   // these rely on one api so I can't do any checking
   $(`#stockPrice`).text(iexData.latestPrice);
   $(`#stockDesc`).text(alphaVantageData.Description);
-  
+
   // price color logic 
   let priceColor = `#000`;
   if (iexData.change > 0) {
@@ -119,14 +120,15 @@ function bigNumberRounder(IEXCloudMarketCap) {
   let alphaMarketCap = alphaVantageData.MarketCapitalization;
   // tests for marketCap truthy value
   if (IEXCloudMarketCap) {
-    let marketCap = IEXCloudMarketCap;
+    let marketCap = IEXCloudMarkio / superStockMagic /
+      etCap;
     return marketCapIfElse(marketCap);
   } else if (alphaVantageData.MarketCapitalization) {
     let marketCap = alphaMarketCap;
     return marketCapIfElse(marketCap);
   }
   // console.log(`bigNum called and marketCap length is:${marketCap.toString().length}`);
-  
+
   function marketCapIfElse(marketCap) {
     // this grabs the length of the marketcap
     let numLength = marketCap.toString().length;
@@ -155,71 +157,70 @@ function stockSearch() {
     console.log(`grabbed good input: ${$userInput}`);
 
   } else {
-    M.toast({html: `Error: please enter a valid ticker!`})
+    M.toast({ html: `Error: please enter a valid ticker!` })
   }
 
 
   // grabbing data from the alphavantage api
   $.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${$userInput}&apikey=U9H8L320ZL3GRGKS`)
-  // hands shaken, data taken
-  .then(function (data0) {
-    console.log(`alphaVantage was called`);
-    alphaVantageData = data0;
-  })
+    // hands shaken, data taken
+    .then(function (data0) {
+      console.log(`alphaVantage was called`);
+      alphaVantageData = data0;
+    })
 
   // grabbing stuff from iexcloud API referencing user input
   $.get(`https://cloud.iexapis.com/stable/stock/${$userInput}/quote?token=${pub}`)
-  // hands shaken, data taken
-  .then(function (data) {
-    console.log(`iex called`);
+    // hands shaken, data taken
+    .then(function (data) {
+      console.log(`iex called`);
 
-    displayStockData(data, alphaVantageData);
-  })
+      displayStockData(data, alphaVantageData);
+    })
 }
 
 /* grabbing the stock overview for a certain ticker */
 fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym}&apikey=U9H8L320ZL3GRGKS`)
   .then(function (res) {
     return res.json();
-})
+  })
   .then(function (data) {
     // let results = data;
     // console.log(results);
     $('.p-aside').text = "hello";
     // console.log($asidePEl); 
     // console.log(data['52WeekHigh']);
-    
-})  
+
+  })
   .catch(function (err) {
     console.error(err);
-});
+  });
 
-
-// On button click technology fetch and display tech news
-  fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&topics=technology&apikey=U9H8L320ZL3GRGKS`)
-  .then(function (res) {
-    return res.json();
-})
+  // On button click technology fetch and display tech news
+  $('.tech').click(function() {
+    
+    $.get(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=technology&apikey=U9H8L320ZL3GRGKS`)
   .then(function (data) {
     let results = data;
     // console.log(results);
-    let num = Math.floor(Math.random() * 50);
-    let num1 = Math.floor(Math.random() * 50);
-    let num2 = Math.floor(Math.random() * 50);
+  
+    var num = Math.floor(Math.random() * 50);
+    var num1 = Math.floor(Math.random() * 50);
+    var num2 = Math.floor(Math.random() * 50);
 
     if (num == num1 || num == num2) {
       num = Math.floor(Math.random() * 50)
     } if (num1 == num2) {
       num1 = Math.floor(Math.random() * 50)
     }
-
-
+  
+  
     $headerEl1.text(results.feed[num].title);
     $headerEl1.append('<hr>');
     $headerEl2.text(results.feed[num1].title);
     $headerEl2.append('<hr>');
     $headerEl3.text(results.feed[num2].title);
-
+  
     $a1.attr('href', results.feed[num].url)
     $a2.attr('href', results.feed[num1].url)
     $a3.attr('href', results.feed[num2].url)
@@ -227,27 +228,285 @@ fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${userInputSym
     $a2.attr('target', "_blank");
     $a3.attr('target', "_blank");
     $img1.attr('src', results.feed[num].banner_image)
-    $img2.attr('src', results.feed[num1].banner_image)
-    $img3.attr('src', results.feed[num2].banner_image)
+    if (!($img1.attr('src', results.feed[num].banner_image))) {
+      $img1.attr('alt', 'No image found for article')
+    }
+
+    console.log(results.feed[num].banner_image)
+
+    if (!($img2.attr('src', results.feed[num1].banner_image))) {
+      $img2.attr('alt', 'No image found for article')
+    }
     
-})  
+    console.log(results.feed[num1].banner_image)
+    if (!($img1.attr('src', results.feed[num2].banner_image))) {
+      $img3.attr('alt', 'No image found for article')
+    }
+    console.log(results.feed[num2].banner_image)
+  
+   })  
   .catch(function (err) {
     console.error(err);
+  
+  })});
+  
+  
 
-});
+//   $('.tech').click(function ( {
+//     ) $.get(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=technology&apikey=U9H8L320ZL3GRGKS`)
+//   .then(function (data) {
+//     let results = data;
+//     // console.log(results);
+//     let num = Math.floor(Math.random() * 50);
+//     let num1 = Math.floor(Math.random() * 50);
+//     let num2 = Math.floor(Math.random() * 50);
+
+//     if (num == num1 || num == num2) {
+//       num = Math.floor(Math.random() * 50)
+//     } if (num1 == num2) {
+//       num1 = Math.floor(Math.random() * 50)
+//     }
+
+
+//     $headerEl1.text(results.feed[num].title);
+//     $headerEl1.append('<hr>');
+//     $headerEl2.text(results.feed[num1].title);
+//     $headerEl2.append('<hr>');
+//     $headerEl3.text(results.feed[num2].title);
+
+//     $a1.attr('href', results.feed[num].url)
+//     $a2.attr('href', results.feed[num1].url)
+//     $a3.attr('href', results.feed[num2].url)
+//     $a1.attr('target', "_blank");
+//     $a2.attr('target', "_blank");
+//     $a3.attr('target', "_blank");
+//     $img1.attr('src', results.feed[num].banner_image)
+//     $img2.attr('src', results.feed[num1].banner_image)
+//     $img3.attr('src', results.feed[num2].banner_image)
+
+// })  
+//   .catch(function (err) {
+//     console.error(err);
+
+// }));
+
+// On button click technology fetch and display tech news
+$('.science').click(function() {
+  
+  $.get(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=life_science&apikey=U9H8L320ZL3GRGKS`)
+.then(function (data) {
+  let results = data;
+  // console.log(results);
+  let num = Math.floor(Math.random() * 50);
+  let num1 = Math.floor(Math.random() * 50);
+  let num2 = Math.floor(Math.random() * 50);
+
+  if (num == num1 || num == num2) {
+    num = Math.floor(Math.random() * 50)
+  } if (num1 == num2) {
+    num1 = Math.floor(Math.random() * 50)
+  }
+
+
+  $headerEl1.text(results.feed[num].title);
+  $headerEl1.append('<hr>');
+  $headerEl2.text(results.feed[num1].title);
+  $headerEl2.append('<hr>');
+  $headerEl3.text(results.feed[num2].title);
+
+  $a1.attr('href', results.feed[num].url)
+  $a2.attr('href', results.feed[num1].url)
+  $a3.attr('href', results.feed[num2].url)
+  $a1.attr('target', "_blank");
+  $a2.attr('target', "_blank");
+  $a3.attr('target', "_blank");
+  $img1.attr('src', results.feed[num].banner_image)
+  $img2.attr('src', results.feed[num1].banner_image)
+  $img3.attr('src', results.feed[num2].banner_image)
+  
+})  
+.catch(function (err) {
+  console.error(err);
+
+})});
+
+
+ // On button click technology fetch and display tech news
+ $('.finance').click(function() {
+    
+  $.get(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=finance&apikey=U9H8L320ZL3GRGKS`)
+.then(function (data) {
+  let results = data;
+  // console.log(results);
+
+  var num = Math.floor(Math.random() * 50);
+  var num1 = Math.floor(Math.random() * 50);
+  var num2 = Math.floor(Math.random() * 50);
+
+  if (num == num1 || num == num2) {
+    num = Math.floor(Math.random() * 50)
+  } if (num1 == num2) {
+    num1 = Math.floor(Math.random() * 50)
+  }
+
+
+  $headerEl1.text(results.feed[num].title);
+  $headerEl1.append('<hr>');
+  $headerEl2.text(results.feed[num1].title);
+  $headerEl2.append('<hr>');
+  $headerEl3.text(results.feed[num2].title);
+
+  $a1.attr('href', results.feed[num].url)
+  $a2.attr('href', results.feed[num1].url)
+  $a3.attr('href', results.feed[num2].url)
+  $a1.attr('target', "_blank");
+  $a2.attr('target', "_blank");
+  $a3.attr('target', "_blank");
+  $img1.attr('src', results.feed[num].banner_image)
+  if (!($img1.attr('src', results.feed[num].banner_image))) {
+    $img1.attr('alt', 'No image found for article')
+  }
+
+  console.log(results.feed[num].banner_image)
+
+  if (!($img2.attr('src', results.feed[num1].banner_image))) {
+    $img2.attr('alt', 'No image found for article')
+  }
+  
+  console.log(results.feed[num1].banner_image)
+  if (!($img1.attr('src', results.feed[num2].banner_image))) {
+    $img3.attr('alt', 'No image found for article')
+  }
+  console.log(results.feed[num2].banner_image)
+
+ })  
+.catch(function (err) {
+  console.error(err);
+
+})});
+
+
+ // On button click technology fetch and display tech news
+ $('.macro').click(function() {
+    
+  $.get(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=economy_macro&apikey=U9H8L320ZL3GRGKS`)
+.then(function (data) {
+  let results = data;
+  // console.log(results);
+
+  var num = Math.floor(Math.random() * 50);
+  var num1 = Math.floor(Math.random() * 50);
+  var num2 = Math.floor(Math.random() * 50);
+
+  if (num == num1 || num == num2) {
+    num = Math.floor(Math.random() * 50)
+  } if (num1 == num2) {
+    num1 = Math.floor(Math.random() * 50)
+  }
+
+
+  $headerEl1.text(results.feed[num].title);
+  $headerEl1.append('<hr>');
+  $headerEl2.text(results.feed[num1].title);
+  $headerEl2.append('<hr>');
+  $headerEl3.text(results.feed[num2].title);
+
+  $a1.attr('href', results.feed[num].url)
+  $a2.attr('href', results.feed[num1].url)
+  $a3.attr('href', results.feed[num2].url)
+  $a1.attr('target', "_blank");
+  $a2.attr('target', "_blank");
+  $a3.attr('target', "_blank");
+  $img1.attr('src', results.feed[num].banner_image)
+  if (!($img1.attr('src', results.feed[num].banner_image))) {
+    $img1.attr('alt', 'No image found for article')
+  }
+
+  console.log(results.feed[num].banner_image)
+
+  if (!($img2.attr('src', results.feed[num1].banner_image))) {
+    $img2.attr('alt', 'No image found for article')
+  }
+  
+  console.log(results.feed[num1].banner_image)
+  if (!($img1.attr('src', results.feed[num2].banner_image))) {
+    $img3.attr('alt', 'No image found for article')
+  }
+  console.log(results.feed[num2].banner_image)
+
+ })  
+.catch(function (err) {
+  console.error(err);
+
+})});
+
+
+ // On button click technology fetch and display tech news
+ $('.micro').click(function() {
+    
+  $.get(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=technology&apikey=U9H8L320ZL3GRGKS`)
+.then(function (data) {
+  let results = data;
+  // console.log(results);
+
+  var num = Math.floor(Math.random() * 50);
+  var num1 = Math.floor(Math.random() * 50);
+  var num2 = Math.floor(Math.random() * 50);
+
+  if (num == num1 || num == num2) {
+    num = Math.floor(Math.random() * 50)
+  } if (num1 == num2) {
+    num1 = Math.floor(Math.random() * 50)
+  }
+
+
+  $headerEl1.text(results.feed[num].title);
+  $headerEl1.append('<hr>');
+  $headerEl2.text(results.feed[num1].title);
+  $headerEl2.append('<hr>');
+  $headerEl3.text(results.feed[num2].title);
+
+  $a1.attr('href', results.feed[num].url)
+  $a2.attr('href', results.feed[num1].url)
+  $a3.attr('href', results.feed[num2].url)
+  $a1.attr('target', "_blank");
+  $a2.attr('target', "_blank");
+  $a3.attr('target', "_blank");
+  $img1.attr('src', results.feed[num].banner_image)
+  if (!($img1.attr('src', results.feed[num].banner_image))) {
+    $img1.attr('alt', 'No image found for article')
+  }
+
+  console.log(results.feed[num].banner_image)
+
+  if (!($img2.attr('src', results.feed[num1].banner_image))) {
+    $img2.attr('alt', 'No image found for article')
+  }
+  
+  console.log(results.feed[num1].banner_image)
+  if (!($img1.attr('src', results.feed[num2].banner_image))) {
+    $img3.attr('alt', 'No image found for article')
+  }
+  console.log(results.feed[num2].banner_image)
+
+ })  
+.catch(function (err) {
+  console.error(err);
+
+})});
+
 
 // Parallax  and Grafic part
-$(document).ready(function(){
+$(document).ready(function () {
   $('.parallax').parallax();
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
   $('.modal').modal();
 });
-        
+
 
 
 // On finance button click fetch and display science news
 
 
- 
