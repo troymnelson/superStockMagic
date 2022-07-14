@@ -14,160 +14,140 @@
 
 
 <body>
-
-      <nav>
-        <div class="nav-wrapper indigo accent-4">
-            <a href="#!" class="brand-logo"><i class="material-icons">child_care</i>Super Stock Magic</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#page-footer">About</a></li>
-                <li><a href="#page-footer">Contact</a></li>
-            </ul>
+  <!-- top navbar! -->
+  <nav>
+    <div class="nav-wrapper indigo accent-4">
+      <a href="#!" class="brand-logo"><i class="material-icons">child_care</i>Super Stock Magic</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#page-footer">About</a></li>
+        <li><a href="#page-footer">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- first parallax container -->
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="./Img/stock-chart.webp" alt="" class="responsive-img">
+    </div>
+  </div>
+  <!-- main 'body' that holds the daily stock news -->
+  <div class="row">
+    <!-- buttons -->
+    <div class="container row">
+      <h2 class="center-align">Daily News</h2>
+      <div class="wrapper section rigth-align">
+        <button class="tech waves-effect waves-light indigo accent-4 btn">Technology</button>
+        <button class="science waves-effect waves-light indigo accent-4 btn">Life Science</button>
+        <button class="finance waves-effect waves-light indigo accent-4 btn">Finance</button>
+        <button class="macro waves-effect waves-light indigo accent-4 btn">Economy (Macro)</button>
+        <button class="micro waves-effect waves-light indigo accent-4 btn">Economy (Micro)</button>
+        <button data-target="modal1" class="btn modal-trigger waves-effect waves-light cyan lighten-1 btn">Search Stock</button>
+      </div>
+    </div>
+    <!-- articles themselves -->
+    <div class="col s12">
+      <div class="now">
+        <div class="container col s4 card-panel hoverable">
+          <a id = "a1" href="#"><img class="section responsive-img" id="img1" src="#" alt="Loading image..."></a>
+          <blockquote>
+            <p class="p-aside left-align header-el1"></p>
+          </blockquote>
         </div>
-      </nav>
-
-      <div class="parallax-container">
-        <div class="parallax">
-            <img src="./Img/stock-chart.webp" alt="" class="responsive-img">
+        <div class="container col s4 card-panel hoverable">
+          <a id = "a2" href="#"><img class="responsive-img" id="img2" src="#" alt="Loading image..."></a>
+          <blockquote>
+            <p class="p-aside left-align header-el2"></p>
+          </blockquote>
+        </div>
+        <div class="container col s4 card-panel hoverable">
+          <a id = "a3" href="#"><img class="responsive-img" id="img3" src="#" alt="Loading image..."></a>
+          <blockquote>
+            <p class="p-aside left-align header-el3"></p>
+          </blockquote> 
         </div>
       </div>
+    </div>
+  </div>
 
-        <div class="row">
-            <div class="container row">
-                <h2 class="center-align">Daily News</h2>
-                <div class="wrapper section rigth-align">
-                    <button class="tech waves-effect waves-light indigo accent-4 btn">Technology</button>
-                    <button class="science waves-effect waves-light indigo accent-4 btn">Life Science</button>
-                    <button class="finance waves-effect waves-light indigo accent-4 btn">Finance</button>
-                    <button class="macro waves-effect waves-light indigo accent-4 btn">Economy (Macro)</button>
-                    <button class="micro waves-effect waves-light indigo accent-4 btn">Economy (Micro)</button>
-                    <button data-target="modal1" class="btn modal-trigger waves-effect waves-light cyan lighten-1 btn">Search Stock</button>
-                </div>
-            </div>
-            <div class="col s12">
-                <div class="now">
-                    <div class="container col s4 card-panel hoverable">
-                        <a id = "a1" href="#"><img class="section responsive-img" id="img1" src="#" alt="Loading image..."></a>
-                        <blockquote>
-                            <p class="p-aside left-align header-el1"></p>
-                        </blockquote>
-                    </div>
-                    <div class="container col s4 card-panel hoverable">
-                        <a id = "a2" href="#"><img class="responsive-img" id="img2" src="#" alt="Loading image..."></a>
-                        <blockquote>
-                            <p class="p-aside left-align header-el2"></p>
-                        </blockquote>
-                    </div>
-
-                    <div class="container col s4 card-panel hoverable">
-                        <a id = "a3" href="#"><img class="responsive-img" id="img3" src="#" alt="Loading image..."></a>
-                        <blockquote>
-                            <p class="p-aside left-align header-el3"></p>
-                        </blockquote> 
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div class="col s12">
-                    <h2>Daily News</h2>
-                    <div class="row">
-                        <div class="container col s4">
-                            <a id = "a1" href="#"><img class="frame section responsive-img" id="img1" src="#" alt="holder image (random movie poster)"></a>
-                            <blockquote>
-                                <p class="p-aside left-align header-el1"></p>
-                            </blockquote>
-                        </div>
-                    
-                        <div class="container col s4">
-                            <a id = "a2" href="#"><img class="frame responsive-img" id="img2" src="#" alt="holder image (random movie poster)"></a>
-                            <blockquote>
-                                <p class="p-aside left-align header-el2"></p>
-                            </blockquote>
-                        </div>
-    
-                        <div class="container col s4 ">
-                            <a id = "a3" href="#"><img class="frame responsive-img" id="img3" src="#" alt="holder image (random movie poster)"></a>
-                            <blockquote>
-                                <p class="p-aside left-align header-el3"></p>
-                            </blockquote>
-                        </div>
-                    </div>
-            </div> -->
-      </div>
-
-            
-      <div class="parallax-container">
-            <div class="parallax">
-                <img src="./Img/stock-chart.webp" alt="" class="responsive-img">
-            </div>
-      </div>
+  <!-- this does the second parallax! super cool -->   
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="./Img/stock-chart.webp" alt="" class="responsive-img">
+    </div>
+  </div>
 
   <!-- Modal Structure -->
   <div class="container">
     <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h4>Stock Marcket Search</h4>
-          <div class="col s8">
-            <div class="row">
-                <div class="input-field col s6">
-                  <i id="stockSearchButtonTag" class="material-icons prefix">timeline</i>
-                  <input id="icon_prefix2" class="materialize-textarea" placeholder="Search stock"></input>
-                  <div class="container section">
-                    <button  id="stockSearchButton" class="waves-effect waves-light indigo accent-4 btn"><i class="material-icons left">done</i>search</button>
-                  </div>
-                </div>
+      <!-- main modal 'body' -->
+      <div class="modal-content">
+        <h4>Stock Marcket Search</h4>
+        <div class="col s8">
+          <!-- search div -->
+          <div class="row">
+            <div class="input-field col s6">
+              <i id="stockSearchButtonTag" class="material-icons prefix">timeline</i>
+              <input id="icon_prefix2" class="materialize-textarea" placeholder="Search stock"></input>
+              <div class="container section">
+                <button  id="stockSearchButton" class="waves-effect waves-light indigo accent-4 btn"><i class="material-icons left">done</i>search</button>
+                <button  id="watchlistClearButton" class="waves-effect waves-light grey accent-4 btn"><i class="material-icons left">cancel</i>clear watchlist</button>
+              </div>
             </div>
-
-            <div class="stockNameHolder">
-              <h2 id="stockName"></h2>
-              <p id="stockDesc"></p>
-              <h3 id="stockPrice"></h3>
-              <h4 id="stockChange"></h4>
+          </div>
+          <!-- watchlist div -->
+          <div class="row">
+            <div id="watchlist" class="col s6">
             </div>
-            <hr>
-            <div id="stockData">
-            </div>
-            
-        </div>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+          <!-- holder for the stock market data -->
+          <div class="stockNameHolder">
+            <h2 id="stockName"></h2>
+            <p id="stockDesc"></p>
+            <h3 id="stockPrice"></h3>
+            <h4 id="stockChange"></h4>
+          </div>
+          <hr>
+          <div id="stockData">
+          </div>
         </div>
       </div>
+      <!-- modal footer -->
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cool, Thanks!</a>
+      </div>
+    </div>
   </div>
 
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://releases.jquery.com/git/ui/jquery-ui-git.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="js/app.js"></script>
+  <!-- js links and the like -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
+<!-- this is the footer - does this make sense to link here? -->
 <footer id="page-footer" class="page-footer col s12 indigo accent-4">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">About us</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                    content.</p>
+                <p class="grey-text text-lighten-4">We are a team of learning developers in the UofM full stack development coding course. This project was created to provide a solution for experienced and new investors to have a place to get access to the latest stock news and market data from multiple sources.</p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Contact us</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="#!">GitHub</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Email</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">link</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link2</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://github.com/cr7st74n"  target="_blank">Cristian's GitHub</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://github.com/fixedOtter" target="_blank">Gunnar's GitHub</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://github.com/troymnelson" target="_blank">Troy's GitHub</a></li>
+                    <li><a class="grey-text text-lighten-3" href="https://github.com/troymnelson/superStockMagic" target="_blank">GitHub Project Page</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          <a href="https://www.gnu.org/licenses/quick-guide-gplv3.html" target="_blank"><span class="copyleft">&copy;</span> GPLv3</a>
         </div>
     </div>
 </footer>
-
 </html>
