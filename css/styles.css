@@ -2,7 +2,6 @@
     height: 100px;
     border: 1px ridge rgb(38, 98, 189);
     padding: 10px;
-    margin: 10px;
 }
 
 .copyleft {
@@ -10,8 +9,8 @@
   transform: rotate(180deg);
 }
 
-#chart{
+/* #chart{
     display: flex;
     justify-content: center;
     height: 200px;
-}
+} */

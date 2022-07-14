@@ -15,13 +15,15 @@
 
 <body>
   <!-- top navbar! -->
-  <nav>
-    <div class="nav-wrapper indigo accent-4">
-      <a href="#!" class="brand-logo"><i class="material-icons">child_care</i>Super Stock Magic</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#page-footer">About</a></li>
-        <li><a href="#page-footer">Contact</a></li>
-      </ul>
+  <nav class="indigo accent-4 tabindex="0">
+    <div class="container ">
+      <div class="nav-wrapper  style="z-index: 10; top: 10%; transform: scaleX(1) scaleY(1);"">
+        <a href="#!" class="brand-logo style="z-index: 10; top: 10%; transform: scaleX(1) scaleY(1);">Super Stock Magic</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#page-footer">About</a></li>
+          <li><a href="#page-footer">Contact</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
   <!-- first parallax container -->
@@ -45,21 +47,21 @@
       </div>
     </div>
     <!-- articles themselves -->
-    <div class="col s12">
+    <div class="col s12 m10 offset-m1">
       <div class="now">
-        <div class="container col s4 card-panel hoverable">
+        <div class="container col s12 m12 l4 card-panel hoverable">
           <a id = "a1" href="#"><img class="section responsive-img" id="img1" src="#" alt="Loading image..."></a>
           <blockquote>
             <p class="p-aside left-align header-el1"></p>
           </blockquote>
         </div>
-        <div class="container col s4 card-panel hoverable">
+        <div class="container col s12 m12 l4 card-panel hoverable">
           <a id = "a2" href="#"><img class="responsive-img" id="img2" src="#" alt="Loading image..."></a>
           <blockquote>
             <p class="p-aside left-align header-el2"></p>
           </blockquote>
         </div>
-        <div class="container col s4 card-panel hoverable">
+        <div class="container col s12 m12 l4 card-panel hoverable">
           <a id = "a3" href="#"><img class="responsive-img" id="img3" src="#" alt="Loading image..."></a>
           <blockquote>
             <p class="p-aside left-align header-el3"></p>
@@ -77,8 +79,7 @@
   </div>
 
   <!-- Modal Structure -->
-  <div class="container">
-    <div id="modal1" class="modal">
+    <div id="modal1" class="modal modal-fixed-footer open" tabindex="0" style="z-index: 1003; display: none; opacity: 0; top: 100%; transform: scaleX(1.5) scaleY(1.5);">
       <!-- main modal 'body' -->
       <div class="modal-content">
         <h4>Stock Marcket Search</h4>
@@ -116,7 +117,6 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cool, Thanks!</a>
       </div>
     </div>
-  </div>
 
   <!-- js links and the like -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
