@@ -1,26 +1,13 @@
-/* 
-body {
-    height: 100%;
-} */
-
-/* .btn {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-} */
-
-
-/* .center-text {
-    text-align: center;
-} */
-
-/* test the branch */
-
 .frame {
     height: 100px;
     border: 1px ridge rgb(38, 98, 189);
     padding: 10px;
     margin: 10px;
+}
+
+.copyleft {
+  display:inline-block;
+  transform: rotate(180deg);
 }
 
 #chart{
