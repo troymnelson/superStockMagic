@@ -19,6 +19,9 @@ For this project, we wanted to follow some criteria to be pushing ourselves in o
 ## Mock-Up
 ![screenshot of site](Img/screenshot.png)
 
+## Project Deployment
+[Access here!](https://troymnelson.github.io/superStockMagic/)
+
 ### Technologies Implemented
 [^1]: [Alpha Vantage API](https://www.alphavantage.co/)
 
