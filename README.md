@@ -17,7 +17,7 @@ For this project, we wanted to follow some criteria to be pushing ourselves in o
 - Being new developers, something else we wanted to make sure we were sticking to is best practices for our repository as well as our code. This includes making professional and descriptive commits, following file structure best practices for organization as well as naming conventions. (This also includes providing a proper, formal README :wink:)
 
 ## Mock-Up
-![screenshot of site](img/screenshot.png) <!-- insert screenshot!! -->
+![screenshot of site](Img/screenshot.png)
 
 ### Technologies Implemented
 [^1]: [Alpha Vantage API](https://www.alphavantage.co/)
